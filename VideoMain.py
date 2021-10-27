@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 import os
 import time
-
-import numpy as np
 import cv2
-
+import zlib
+import threading
+import  platform
+from PIL import Image
 # 捕获摄像头
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -19,13 +20,13 @@ video_file_fp = cv2.VideoWriter()
 video_file_fp.open('camera_video.mp4', video_format, frame_fps, frameSize, True)
 
 start_time = time.time()
-video_time_length = 20
+video_time_length = 60
 print('start to record video')
 
 while True:
     sucess, video_frame = cap.read()
     time_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    #cv2.putText(video_frame, time_str, (5, 340), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    cv2.putText(video_frame, time_str, (15, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 255), 2)
     video_file_fp.write(video_frame)
     cv2.imshow('frame', video_frame)
     cur_time = time.time()
