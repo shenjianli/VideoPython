@@ -4,6 +4,7 @@ import datetime
 from time import sleep
 import cv2
 
+# 正常运行 摄像头捕捉当前图像保存当前图片（摄像头会一直开着，监控容易被发现）
 # 参数0表示笔记本自带摄像头
 cap = cv2.VideoCapture(0)
 while True:

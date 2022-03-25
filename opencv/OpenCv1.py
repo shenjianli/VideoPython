@@ -1,9 +1,11 @@
+import time
 from os import mkdir
 from os.path import isdir
 import datetime
 from time import sleep
 import cv2
 
+# 正常运行 摄像头捕捉当前图像保存当前图片（摄像头用完就关，不易发现）
 while True:
     # 参数0表示笔记本自带摄像头
     cap = cv2.VideoCapture(0)
@@ -13,6 +15,7 @@ while True:
     print("当前时间：", now)
     if not isdir(now[:10]):
         mkdir(now[:10])
+    time.sleep(3)
     # 捕捉当前图像，ret = True表示成功 False 表示失败
     ret, frame = cap.read()
     if ret:

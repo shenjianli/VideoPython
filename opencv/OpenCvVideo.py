@@ -6,6 +6,8 @@ from threading import Thread
 from shutil import copyfile
 import cv2
 
+# 正常运行，录制视频
+
 # 参数0表示笔记本自带摄像头
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -20,11 +22,10 @@ now = str(datetime.datetime.now())[:19].replace(':', '_')
 dirName = now[:10]
 tempAviFile = dirName + '/' + now + '.mp4'
 if not isdir(dirName):
-    mkdir()
+    mkdir(dirName)
 
 aviFile = cv2.VideoWriter()
 aviFile.open(tempAviFile, video_format, frame_fps, frameSize, True)
-
 
 
 def write():
@@ -37,7 +38,7 @@ def write():
 
 
 Thread(target=write).start()
-sleep(30)
+input("输入结束录制")
 aviFile.release()
 cap.release()
 
